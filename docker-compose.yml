@@ -1,0 +1,24 @@
+services:
+    jenkins:
+        container_name: jenkins
+        build: .
+        image: jenkins
+        ports:
+            - "8080:8080"
+        networks:
+            - bridge
+        environment: 
+          - JENKINS_ADMIN_ID=admin  
+          - JENKINS_ADMIN_PASSWORD=password 
+
+    agent:
+        container_name: agent
+        build: agent
+        image: agent
+        ports:
+            - "8081:8081"
+        networks:
+            - bridge
+
+networks:
+    bridge: {}

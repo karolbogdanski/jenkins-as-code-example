@@ -1,4 +1,6 @@
 jenkins:
+  systemMessage: "Controlled by Configuration as Code"
+  
   securityRealm:
     local:
       allowsSignup: false
