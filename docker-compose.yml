@@ -1,7 +1,7 @@
 services:
     jenkins:
         container_name: jenkins
-        build: .
+        build: jenkins-config
         image: jenkins
         ports:
             - 8080:8080
@@ -10,10 +10,10 @@ services:
             - bridge
         environment: 
           - JENKINS_ADMIN_ID=admin  
-          #- CASC_JENKINS_CONFIG=/Users/kbogdanski/Desktop/CICD/jenkins/casc.yaml
+          - CASC_JENKINS_CONFIG=/var/jenkins_home/cask.yaml
         volumes:
           - jenkins_home:/var/jenkins_home
-          - ./jenkins.yaml:/var/jenkins_home/jenkins.yaml
+          - ./jenkins-config/casc.yaml:/var/jenkins_home/cask.yaml
         secrets:
           - JENKINS_ADMIN_PASSWORD
 
