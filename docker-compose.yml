@@ -26,6 +26,15 @@ services:
         networks:
             - bridge
 
+    agent:
+        container_name: centos
+        build: centos
+        image: centos
+        ports:
+            - "8082:22"
+        networks:
+            - bridge
+
 secrets:
   JENKINS_ADMIN_PASSWORD:
     file: /Users/kbogdanski/jenkins_home/JENKINS_ADMIN_PASSWORD
