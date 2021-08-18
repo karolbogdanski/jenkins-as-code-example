@@ -17,10 +17,10 @@ services:
         secrets:
           - JENKINS_ADMIN_PASSWORD
 
-    agent:
-        container_name: agent
+    npm-agent:
+        container_name: npm-agent
         build: agent
-        image: agent
+        image: npm-agent
         ports:
             - "8081:8081"
             - "2377:2377"
