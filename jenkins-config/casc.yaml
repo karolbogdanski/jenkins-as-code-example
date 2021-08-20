@@ -21,6 +21,9 @@ security:
     - global:
         strategy: triggeringUsersAuthorizationStrategy
 
+jobs:
+  - file: /usr/local/seedjob.groovy
+
 unclassified:
   location:
     url: http://server_ip:8080/

@@ -1,7 +1,7 @@
 services:
     jenkins:
         container_name: jenkins
-        build: jenkins-config
+        build: .
         image: jenkins
         ports:
             - "8080:8080"
@@ -16,16 +16,6 @@ services:
           - "./jenkins-config/casc.yaml:/var/jenkins_home/cask.yaml"
         secrets:
           - JENKINS_ADMIN_PASSWORD
-
-    npm-agent:
-        container_name: npm-agent
-        build: agent
-        image: npm-agent
-        ports:
-            - "8081:8081"
-            - "2377:2377"
-        networks:
-            - net
 
 secrets:
   JENKINS_ADMIN_PASSWORD:
