@@ -1,5 +1,10 @@
 # Jenkins as Code Test Project 
 
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
 ## General info
 This project is made to explore endless possibilities that jcasc and job-DSL plugins provide to Jenkins.
 
