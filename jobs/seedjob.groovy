@@ -1,6 +1,8 @@
-job('DSL-Tutorial-1-Test') {
+def giturl = 'https://github.com/KarolBogdanskiOfficial/react-tetris'
+
+job('install-tetris') {
 	scm {
-		git('git://github.com/quidryan/aws-sdk-test.git')
+		git(giturl)
 	}
 	steps {
 		maven('-e clean test')
