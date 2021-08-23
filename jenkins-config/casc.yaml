@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Controlled by Configuration as Code"
+  systemMessage: "Controlled by Configuration as Code by przemo1337"
 
   securityRealm:
     local:
@@ -22,8 +22,9 @@ security:
         strategy: triggeringUsersAuthorizationStrategy
 
 jobs:
-  - file: /usr/local/seedjob.groovy
+  - file: "/usr/local/jobs/seedjob.groovy"
+  - file: "/usr/local/jobs/pipeline.groovy"
 
 unclassified:
   location:
-    url: http://server_ip:8080/
+    url: "http://server_ip:8080/"
