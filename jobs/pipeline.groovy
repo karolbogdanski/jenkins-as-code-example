@@ -1,7 +1,7 @@
 pipelineJob('product-job') {
   definition {
     cps {
-      script(readFileFromWorkspace('pipeline.jenkinsfile'))
+      script(readFileFromWorkspace('npm_pipeline.jenkinsfile'))
       sandbox()     
     }
   }
