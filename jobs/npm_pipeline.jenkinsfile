@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'kbogdanski/npm-agent' }
+    }
 
     stages {
         stage('Build') {
