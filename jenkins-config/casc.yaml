@@ -15,14 +15,43 @@ jenkins:
   remotingSecurity:
     enabled: true
 
+  clouds:
+    - docker:
+        name: "docker"
+        dockerApi:
+          dockerHost:
+            uri: "tcp://host.docker.internal:2377"
+        templates:
+          - labelString: "docker-agent"
+            dockerTemplateBase:
+              image: "kbogdanski/npm-agent"
+            remoteFs: "/home/jenkins/agent"
+            connector:
+              attach:
+                user: "jenkins"
+            instanceCapStr: "10"
+            retentionStrategy:
+              idleMinutes: 1
+
 security:
   queueItemAuthenticator:
     authenticators:
     - global:
         strategy: triggeringUsersAuthorizationStrategy
 
+
+
 jobs:
-  - file: "/usr/local/jobs/seedjob.groovy"
+  - script: |
+      multibranchPipelineJob('seed-test') {
+          branchSources {
+              git {
+                  id = 'seed-test'
+                  remote('https://github.com/karolbogdanski/jenkins-exercise/tree/upgrades')
+              }
+          }
+      }
+
   - file: "/usr/local/jobs/pipeline.groovy"
 
 unclassified:
