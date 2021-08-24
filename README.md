@@ -20,4 +20,6 @@ To run this project you need docker.
 
 First, create a text file with admin password in your desired location and provide path to it in docker-compose.yml file.
 
+You may encounter problems with connecting to agent - check where your docker host is listening and provide the right port in casc.yaml file in cloud section.
+
 Next run `docker compose up` (`docker-compose` has been integrated with docker-cli but in case of problems it can still be used.)
