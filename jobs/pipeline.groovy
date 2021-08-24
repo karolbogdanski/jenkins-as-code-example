@@ -1,4 +1,4 @@
-pipelineJob('product-job') {
+pipelineJob('npm-tetris') {
   definition {
     cpsScm {
         scm {

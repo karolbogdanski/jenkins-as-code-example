@@ -20,7 +20,7 @@ jenkins:
         name: "docker"
         dockerApi:
           dockerHost:
-            uri: "tcp://host.docker.internal:2377"
+            uri: "tcp://host.docker.internal:27000"
         templates:
           - labelString: "docker-agent"
             dockerTemplateBase:
