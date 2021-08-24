@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'kbogdanski/npm-agent' }
+        docker { image 'node' }
     }
 
     stages {
