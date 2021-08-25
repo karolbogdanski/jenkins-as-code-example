@@ -2,10 +2,10 @@ FROM jenkins/agent:latest
 USER root
 RUN apt-get update && apt-get install -y apt-transport-https \
        ca-certificates curl gnupg2 \
-       software-properties-common \
-       npm
+       software-properties-common 
 
-RUN npm install -g npm@latest
+RUN apt-get install -yq nodejs build-essential
+RUN apt-get install -g npm@latest
 
 RUN usermod -aG root jenkins
 USER jenkins 
