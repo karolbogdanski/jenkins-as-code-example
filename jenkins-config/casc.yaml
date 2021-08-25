@@ -24,7 +24,7 @@ jenkins:
         templates:
           - labelString: "docker-agent"
             dockerTemplateBase:
-              image: "kbogdanski/npm-agent"
+              image: "node:slim"
             remoteFs: "/home/jenkins/agent"
             connector:
               attach:
