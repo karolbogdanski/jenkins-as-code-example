@@ -22,9 +22,9 @@ jenkins:
           dockerHost:
             uri: "tcp://host.docker.internal:2377"
         templates:
-          - labelString: "docker-agent"
+          - labelString: "node-agent"
             dockerTemplateBase:
-              image: "node:slim"
+              image: "kbogdanski/npm-agent"
             remoteFs: "/home/jenkins/agent"
             connector:
               attach:
