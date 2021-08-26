@@ -24,7 +24,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            agent {label: 'mozilla-agent'}
             steps {
+                sh 'apk add --update npm'
                 sh 'npm start'
             }
         }
