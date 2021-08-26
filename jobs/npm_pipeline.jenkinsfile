@@ -28,6 +28,7 @@ pipeline {
             {
                 docker 
                 {
+                    image 'jlesage/firefox'
                     label 'mozilla-agent'
                 }
             }
