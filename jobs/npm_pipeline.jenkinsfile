@@ -23,8 +23,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'npm run  srv-dev'
                 sh 'npm run  client-dev'
+                sh 'npm run  srv-dev'
             }
         }
     }
