@@ -1,12 +1,16 @@
 pipeline {
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: '1', artifactNumToKeepStr: '5'))
+    }
+    
     agent any
-
+    
     stages {
         stage('Checkout') {
             steps {
             script {
                 // The below will clone your repo and will be checked out to master branch by default.
-                git url: 'https://github.com/KarolBogdanskiOfficial/react-tetris'
+                git url: 'https://github.com/KarolBogdanskiOfficial/red-tetris'
                 // Do a ls -lart to view all the files are cloned. It will be clonned. This is just for you to be sure about it.
                 sh "ls -lart ./*" 
                 }
@@ -15,17 +19,17 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm install'
-                sh 'npm run build'
             }
         }
         stage('Test') {
             steps {
-                echo 'just testin you dude'
+                sh 'npm run test'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'npm start'
+                sh 'npm run  client-dev'
+                sh 'npm run  srv-dev'
             }
         }
     }
