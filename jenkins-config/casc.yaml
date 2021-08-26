@@ -57,3 +57,7 @@ jobs:
 unclassified:
   location:
     url: "http://server_ip:8080/"
+  mailer:
+    replyToAdress: karol.bogdanski3@gmail.com
+    smtpHost: smtp.gmail.com
+    smtpPort: 456
