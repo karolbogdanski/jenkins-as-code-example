@@ -32,17 +32,6 @@ jenkins:
             instanceCapStr: "10"
             retentionStrategy:
               idleMinutes: 1
-          
-          - labelString: "mozilla-agent"
-            dockerTemplateBase:
-              image: "jlesage/firefox"
-            remoteFs: "/home/jenkins/agent"
-            connector:
-              attach:
-                user: "root"
-            instanceCapStr: "10"
-            retentionStrategy:
-              idleMinutes: 1
 
 security:
   queueItemAuthenticator:
