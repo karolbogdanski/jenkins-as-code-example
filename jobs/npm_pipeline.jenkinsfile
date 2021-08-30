@@ -13,6 +13,18 @@ pipeline {
                 }
             }
         }
+        post{
+            success {
+                mail to: 'karol.bogdanski3@gmail.com',
+                    subject: "We did it: ${currentBuild.fullDisplayName}",
+                    body: "Something is right with ${env.BUILD_URL}"
+            }
+            failure {
+                mail to: 'karol.bogdanski3@gmail.com',
+                    subject: "SAD BOOOYS: ${currentBuild.fullDisplayName}",
+                    body: "Something is wrong with ${env.BUILD_URL}"
+            }
+        }
         stage('Build') {
             steps {
                 sh 'npm install'
