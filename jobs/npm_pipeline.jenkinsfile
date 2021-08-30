@@ -45,6 +45,7 @@ pipeline {
                         subject: "Test Stage failed: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}"
                 }
+            }
         }
         stage('Deploy') {
             steps {
@@ -62,6 +63,7 @@ pipeline {
                         subject: "Deploy Stage failed: ${currentBuild.fullDisplayName}",
                         body: "Something is wrong with ${env.BUILD_URL}"
                 }
+            }
         }
     }
 }
