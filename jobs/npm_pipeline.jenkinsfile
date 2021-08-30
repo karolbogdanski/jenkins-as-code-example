@@ -37,6 +37,7 @@ pipeline {
             post {
                 success {
                     mail to: 'karol.bogdanski3@gmail.com',
+                        emailext attachLog: true,
                         subject: "Test Stage succeeded: ${currentBuild.fullDisplayName}",
                         body: "Something is right with ${env.BUILD_URL}"
                 }
