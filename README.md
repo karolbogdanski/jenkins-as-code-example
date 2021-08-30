@@ -21,5 +21,7 @@ To run this project you need docker.
 First, create a text file with admin password in your desired location and provide path to it in docker-compose.yml file.
 
 You may encounter problems with connecting to agent - check where your docker host is listening and provide the right port in casc.yaml file in cloud section.
+On docker-for-mac you may have to open a terminal and type `socat TCP-LISTEN:2377,reuseaddr,fork UNIX-CONNECT:/var/run/docker.sock &`, where 2377 is a port I use. 
+On docker-for-windows the right port should be displayed in settings section of docker GUI.
 
 Next run `docker compose up` (`docker-compose` has been integrated with docker-cli but in case of problems it can still be used.)
