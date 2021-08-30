@@ -60,4 +60,4 @@ unclassified:
   mailer:
     replyToAddress: karol.bogdanski3@gmail.com
     smtpHost: smtp.gmail.com
-    smtpPort: 456
+
