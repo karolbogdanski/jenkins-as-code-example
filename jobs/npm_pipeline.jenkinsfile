@@ -34,12 +34,34 @@ pipeline {
             steps {
                 sh 'npm run test'
             }
+            post {
+                success {
+                    mail to: 'karol.bogdanski3@gmail.com',
+                        subject: "Test Stage succeeded: ${currentBuild.fullDisplayName}",
+                        body: "Something is right with ${env.BUILD_URL}"
+                }
+                failure {
+                    mail to: 'karol.bogdanski3@gmail.com',
+                        subject: "Test Stage failed: ${currentBuild.fullDisplayName}",
+                        body: "Something is wrong with ${env.BUILD_URL}"
+                }
         }
         stage('Deploy') {
             steps {
                 sh '(npm run srv-dev&)'
                 sh '(npm run client-dev&)'
             }
+            post {
+                success {
+                    mail to: 'karol.bogdanski3@gmail.com',
+                        subject: "Deploy Stage succeeded: ${currentBuild.fullDisplayName}",
+                        body: "Something is right with ${env.BUILD_URL}"
+                }
+                failure {
+                    mail to: 'karol.bogdanski3@gmail.com',
+                        subject: "Deploy Stage failed: ${currentBuild.fullDisplayName}",
+                        body: "Something is wrong with ${env.BUILD_URL}"
+                }
         }
     }
 }
