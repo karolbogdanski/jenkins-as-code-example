@@ -12,22 +12,22 @@ pipeline {
                 git url: 'https://github.com/KarolBogdanskiOfficial/red-tetris'
                 }
             }
-            post {
-                success {
-                    mail to: 'karol.bogdanski3@gmail.com',
-                        subject: "We did it: ${currentBuild.fullDisplayName}",
-                        body: "Something is right with ${env.BUILD_URL}"
-                }
-                failure {
-                    mail to: 'karol.bogdanski3@gmail.com',
-                        subject: "We got a problem :// : ${currentBuild.fullDisplayName}",
-                        body: "Something is wrong with ${env.BUILD_URL}"
-                }
-            }
         }
         stage('Build') {
             steps {
                 sh 'npm install'
+            }
+            post {
+                success {
+                    mail to: 'karol.bogdanski3@gmail.com',
+                        subject: "Build Stage succeeded: ${currentBuild.fullDisplayName}",
+                        body: "Something is right with ${env.BUILD_URL}"
+                }
+                failure {
+                    mail to: 'karol.bogdanski3@gmail.com',
+                        subject: "Build Stage failed: ${currentBuild.fullDisplayName}",
+                        body: "Something is wrong with ${env.BUILD_URL}"
+                }
             }
         }
         stage('Test') {
@@ -37,8 +37,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'npm run srv-dev &'
-                sh 'npm run client-dev'
+                sh '(npm run srv-dev&)'
+                sh '(npm run client-dev&)'
             }
         }
     }
