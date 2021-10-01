@@ -1,69 +1,49 @@
 pipeline {
-    triggers { cron('0 20 * * *') }
+    
+    //This makes the pipline execute everyday at 20
+    //triggers { cron('0 20 * * *') } 
+    
     options {
+        //this ensures that logs are cleared 
         buildDiscarder(logRotator(daysToKeepStr: '1', artifactNumToKeepStr: '5'))
     }
     
     agent any
     
     stages {
+        //this stage clones a desired git repository
         stage('Checkout') {
             steps {
             script {
-                git url: 'https://github.com/KarolBogdanskiOfficial/red-tetris'
+                git url: "${LINK to a repo}"
                 }
             }
         }
         stage('Build') {
             steps {
-                sh 'npm install'
+                echo "building..."
             }
             post {
                 success {
-                    mail to: 'karol.bogdanski3@gmail.com',
+                    mail to: 'example@example.com',
                         subject: "Build Stage succeeded: ${currentBuild.fullDisplayName}",
-                        body: "Something is right with ${env.BUILD_URL}"
+                        body: "${env.BUILD_URL}"
                 }
                 failure {
-                    mail to: 'karol.bogdanski3@gmail.com',
+                    mail to: 'example@example.com',
                         subject: "Build Stage failed: ${currentBuild.fullDisplayName}",
-                        body: "Something is wrong with ${env.BUILD_URL}"
+                        body: "${env.BUILD_URL}"
                 }
             }
         }
         stage('Test') {
             steps {
-                sh 'npm run test'
-            }
-            post {
-                success {
-                    mail to: 'karol.bogdanski3@gmail.com',
-                        subject: "Test Stage succeeded: ${currentBuild.fullDisplayName}",
-                        body: "Something is right with ${env.BUILD_URL}"
-                }
-                failure {
-                    mail to: 'karol.bogdanski3@gmail.com',
-                        subject: "Test Stage failed: ${currentBuild.fullDisplayName}",
-                        body: "Something is wrong with ${env.BUILD_URL}"
-                }
+                echo "testing..."
             }
         }
         stage('Deploy') {
             steps {
-                sh '(npm run srv-dev&)'
-                sh '(npm run client-dev&)'
-            }
-            post {
-                success {
-                    mail to: 'karol.bogdanski3@gmail.com',
-                        subject: "Deploy Stage succeeded: ${currentBuild.fullDisplayName}",
-                        body: "Something is right with ${env.BUILD_URL}"
-                }
-                failure {
-                    mail to: 'karol.bogdanski3@gmail.com',
-                        subject: "Deploy Stage failed: ${currentBuild.fullDisplayName}",
-                        body: "Something is wrong with ${env.BUILD_URL}"
-                }
+                echo "deploying"
             }
         }
     }

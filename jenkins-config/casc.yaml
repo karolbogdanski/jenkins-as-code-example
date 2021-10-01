@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Controlled by Configuration as Code by przemo1337"
+  systemMessage: "Controlled by Configuration as Code by karolbogdanski and others"
 
   securityRealm:
     local:
@@ -39,25 +39,12 @@ security:
     - global:
         strategy: triggeringUsersAuthorizationStrategy
 
-
-
-jobs:
-  - script: |
-      multibranchPipelineJob('seed-test') {
-          branchSources {
-              git {
-                  id = 'seed-test'
-                  remote('https://github.com/karolbogdanski/jenkins-exercise/tree/upgrades')
-              }
-          }
-      }
-
   - file: "/usr/local/jobs/pipeline.groovy"
 
 unclassified:
   location:
     url: "http://server_ip:8080/"
   mailer:
-    replyToAddress: karol.bogdanski3@gmail.com
+    replyToAddress: example@example.com
     smtpHost: smtp.gmail.com
 

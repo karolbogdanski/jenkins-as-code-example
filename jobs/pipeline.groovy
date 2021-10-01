@@ -1,9 +1,10 @@
-pipelineJob('npm-tetris') {
+pipelineJob('example-job-name') {
   definition {
     cpsScm {
         scm {
-            git('https://github.com/karolbogdanski/jenkins-exercise', 'email-notifications', {node -> node / 'extensions' << '' })
-            scriptPath("jobs/npm_pipeline.jenkinsfile")
+            // here we specify where the jenkins file is
+            git("${path to a repo where jenkinsfile is}", "${example-branch-name}", {node -> node / 'extensions' << '' })
+            scriptPath("jobs/example.jenkinsfile")
             }
 
     }
