@@ -1,0 +1,51 @@
+jenkins:
+  systemMessage: "Controlled by Configuration as Code by karolbogdanski and others"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: ${JENKINS_ADMIN_ID}
+         password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:admin"
+        - "Overall/Read:authenticated"
+  remotingSecurity:
+    enabled: true
+
+  clouds:
+    - docker:
+        name: "docker"
+        dockerApi:
+          dockerHost:
+            uri: "tcp://host.docker.internal:2377"
+        templates:
+          - labelString: "node-agent"
+            dockerTemplateBase:
+              image: "kbogdanski/npm-agent"
+            remoteFs: "/home/jenkins/agent"
+            connector:
+              attach:
+                user: "jenkins"
+            instanceCapStr: "10"
+            retentionStrategy:
+              idleMinutes: 1
+
+jobs:
+  - file: "/usr/local/jobs/pipeline.groovy"
+
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+
+unclassified:
+  location:
+    url: "http://server_ip:8080/"
+  mailer:
+    replyToAddress: example@example.com
+    smtpHost: smtp.gmail.com
+

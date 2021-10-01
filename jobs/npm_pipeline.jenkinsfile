@@ -1,0 +1,50 @@
+pipeline {
+    
+    //This makes the pipline execute everyday at 20
+    //triggers { cron('0 20 * * *') } 
+    
+    options {
+        //this ensures that logs are cleared 
+        buildDiscarder(logRotator(daysToKeepStr: '1', artifactNumToKeepStr: '5'))
+    }
+    
+    agent any
+    
+    stages {
+        //this stage clones a desired git repository
+        stage('Checkout') {
+            steps {
+            script {
+                git url: "${LINK to a repo}"
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "building..."
+            }
+            post {
+                success {
+                    mail to: 'example@example.com',
+                        subject: "Build Stage succeeded: ${currentBuild.fullDisplayName}",
+                        body: "${env.BUILD_URL}"
+                }
+                failure {
+                    mail to: 'example@example.com',
+                        subject: "Build Stage failed: ${currentBuild.fullDisplayName}",
+                        body: "${env.BUILD_URL}"
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "testing..."
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "deploying"
+            }
+        }
+    }
+}

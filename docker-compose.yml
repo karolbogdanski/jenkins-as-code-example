@@ -1,0 +1,26 @@
+services:
+    jenkins:
+        container_name: jenkins
+        build: .
+        image: jenkins
+        ports:
+            - "8080:8080"
+            - "50000:50000"
+        networks:
+            - net
+        environment: 
+          - JENKINS_ADMIN_ID=admin  
+          - CASC_JENKINS_CONFIG=/var/jenkins_home/cask.yaml
+        volumes:
+          - "jenkins_home:/var/jenkins_home"
+          - "./jenkins-config/casc.yaml:/var/jenkins_home/cask.yaml"
+        secrets:
+          - JENKINS_ADMIN_PASSWORD
+
+secrets:
+  JENKINS_ADMIN_PASSWORD:
+    file: "${PATH TO A FILE WITH PASSWORD}"
+networks:
+    net: {}
+volumes:
+  jenkins_home:

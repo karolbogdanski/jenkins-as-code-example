@@ -1,4 +1,4 @@
-ant:latest
+
 antisamy-markup-formatter:latest
 authorize-project:latest
 build-timeout:latest
@@ -6,15 +6,16 @@ cloudbees-folder:latest
 configuration-as-code:latest
 credentials-binding:latest
 docker:latest
-docker-plugin:latest
+docker-workflow:1.26
 email-ext:latest
 git:latest
 github-branch-source:latest
-gradle:latest
 greenballs:latest
+job-dsl:1.77
 ldap:latest
 mailer:latest
 matrix-auth:latest
+nodejs:latest
 pam-auth:latest
 parameterized-trigger:latest
 pipeline-github-lib:latest
@@ -23,4 +24,3 @@ ssh-slaves:latest
 timestamper:latest
 workflow-aggregator:latest
 workflow-multibranch:latest
-ws-cleanup:latest
