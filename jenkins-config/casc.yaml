@@ -33,13 +33,14 @@ jenkins:
             retentionStrategy:
               idleMinutes: 1
 
+jobs:
+  - file: "/usr/local/jobs/pipeline.groovy"
+
 security:
   queueItemAuthenticator:
     authenticators:
     - global:
         strategy: triggeringUsersAuthorizationStrategy
-
-  - file: "/usr/local/jobs/pipeline.groovy"
 
 unclassified:
   location:
