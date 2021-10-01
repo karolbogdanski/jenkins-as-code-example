@@ -1,4 +1,4 @@
-# Jenkins as Code Test Project 
+# Jenkins as Code Example Project 
 
 ## Table of contents
 * [General info](#general-info)
@@ -7,6 +7,8 @@
 
 ## General info
 This project is made to explore endless possibilities that jcasc and job-DSL plugins provide to Jenkins.
+I am still learnig and so are you (i guess) so feel free to report any issues and tips.
+Topics I tried to cover here are: creating docker agents, sending mail notifications, setting up jobs and piplines, wrapping the whole configuration with the Infrastucture as Code principle.
 
 ## Technologies
 
